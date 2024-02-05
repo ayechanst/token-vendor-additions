@@ -69,6 +69,22 @@ yarn start
 
 > You can `yarn deploy --reset` to deploy your contract until you get it right.
 
+<details><summary>Look under the hood 🛻 </summary>
+
+```solidity
+
+contract YourToken is ERC20 {
+  constructor() ERC20("Gold", "GLD") {
+    _mint(0xD1938Cd4dc9CD178b641B8A2E0bb4C8114ADDF20 , 1000 * 10 ** 18);
+  }
+}
+```
+is ERC20?
+constructor()?
+_mint?
+
+</details>
+
 ### 🥅 Goals
 
 - [ ] Can you check the `balanceOf()` your frontend address in the `Debug Contracts` tab? (**YourToken** contract)
