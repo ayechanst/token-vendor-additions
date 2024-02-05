@@ -73,15 +73,23 @@ yarn start
 
 ```solidity
 
+pragma solidity 0.8.4;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
 contract YourToken is ERC20 {
   constructor() ERC20("Gold", "GLD") {
     _mint(0xD1938Cd4dc9CD178b641B8A2E0bb4C8114ADDF20 , 1000 * 10 ** 18);
   }
 }
 ```
-is ERC20?
-constructor()?
-_mint?
+is ERC20?  
+> When we add "is ERC20" in front of our contract name, we are allowing it to inherit the ERC20 token contract from OpenZeppelin. This means our contract has all of the functions and features of OpenZeppelin's ERC20 token contract. 
+
+constructor()?  
+> The constructor() is a special function that only executes once, when the contract is deployed. In this case, we are calling the mint function.
+
+_mint?  
+> We can call the mint function becuase our contract "YourToken" is also the ERC20 contract. You can check the OpenZeppelin [docs](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#ERC20-_mint-address-uint256-) to see other functions available and how they work.
 
 </details>
 
