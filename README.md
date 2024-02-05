@@ -82,13 +82,13 @@ contract YourToken is ERC20 {
   }
 }
 ```
-is ERC20?  
+😶‍🌫️ is ERC20
 > When we add "is ERC20" in front of our contract name, we are allowing it to inherit the ERC20 token contract from OpenZeppelin, which we imported. This means our contract has all of the functions and features of OpenZeppelin's ERC20 token contract. 
 
-constructor()?  
+🔨 constructor()
 > The [constructor](https://solidity-by-example.org/constructor/) is a special function that only executes once, when the contract is deployed. In this case, we are calling the mint function.
 
-_mint?  
+🌱 mint?  
 > The mint function is already defined in the ERC20 contract and since the contract "YourToken" **is** ERC20, we can call any of it's functions. You can check the OpenZeppelin [docs](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#ERC20-_mint-address-uint256-) to see other functions available and how they work.
 
 </details>
