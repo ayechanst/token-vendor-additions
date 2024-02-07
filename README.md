@@ -63,13 +63,13 @@ yarn start
 
 > 👩‍💻 Edit `YourToken.sol` to inherit the **ERC20** token standard from OpenZeppelin
 
-> Mint **1000** (\* 10 \*\* 18) to your frontend address using the `constructor()`.
+> Mint **1000** (\* 10 \*\* 18) to your frontend address using the `constructor()`. We will change the frontend address to msg.sender later.
 
 (Your frontend address is the address in the top right of http://localhost:3000)
 
 > You can `yarn deploy --reset` to deploy your contract until you get it right.
 
-<details><summary>Look under the hood 🛻 </summary>
+<details><summary>Whats going on under the hood 🛻 </summary>
 
 ```solidity
 
@@ -78,18 +78,18 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract YourToken is ERC20 {
   constructor() ERC20("Gold", "GLD") {
-    _mint(0xD1938Cd4dc9CD178b641B8A2E0bb4C8114ADDF20 , 1000 * 10 ** 18);
+    _mint( ~~~YOUR FRONTEND ADDRESS~~~ , 1000 * 10 ** 18);
   }
 }
 ```
+
 😶‍🌫️ is ERC20
-> When we add "is ERC20" in front of our contract name, we are allowing it to inherit the ERC20 token contract from OpenZeppelin, which we imported. This means our contract has all of the functions and features of OpenZeppelin's ERC20 token contract. 
 
-🔨 constructor()
-> The [constructor](https://solidity-by-example.org/constructor/) is a special function that only executes once, when the contract is deployed. In this case, we are calling the mint function.
+> When we add the `is` keyword after our contract name, we are allowing it to inherit properties and functions of whatever contract follows `is`.
 
-🌱 mint?  
-> The mint function is already defined in the ERC20 contract and since the contract "YourToken" **is** ERC20, we can call any of it's functions. You can check the OpenZeppelin [docs](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#ERC20-_mint-address-uint256-) to see other functions available and how they work.
+🌱 \_mint()
+
+> `YourToken` **is** ERC20, so we can call any of it's functions. You can check the [OpenZeppelin docs](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#ERC20-_mint-address-uint256-) to see other functions also available and how they work.
 
 </details>
 
@@ -106,9 +106,13 @@ contract YourToken is ERC20 {
 
 ## Checkpoint 2: ⚖️ Vendor 🤖
 
+<!-- Things to mention: tokens are contracts too! so "YourToken" is also a contract, therefore u can send stuff to it. -->
+
+Now that we know `YourToken.sol` correctly mints tokens to your frontend address, lets mint those tokens to the `Vendor.sol` address instead. Our vendor is the one supposed to be the one doing the vending after all.
+
 > 👩‍💻 Edit the `Vendor.sol` contract with a **payable** `buyTokens()` function
 
-Use a price variable named `tokensPerEth` set to **100**:
+Create a global price variable named `tokensPerEth` set to **100**:
 
 ```solidity
 uint256 public constant tokensPerEth = 100;
