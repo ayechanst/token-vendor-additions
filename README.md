@@ -110,6 +110,8 @@ contract YourToken is ERC20 {
 
 Now that we know `YourToken.sol` correctly mints tokens to your frontend address, lets mint those tokens to the `Vendor.sol` address instead. Our vendor is the one supposed to be the one doing the vending after all.
 
+---
+
 > 👩‍💻 Edit the `Vendor.sol` contract with a **payable** `buyTokens()` function
 
 Create a global price variable named `tokensPerEth` set to **100**:
